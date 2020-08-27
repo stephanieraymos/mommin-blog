@@ -1,7 +1,14 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import './App.css';
 import axios from 'axios';
+
+
+
+
+
+const axiosInstance = axios.create({
+  baseUrl: 'https://jsonplaceholder.typicode.com'
+})
 
 class App extends Component {
   state = {
@@ -9,8 +16,8 @@ class App extends Component {
   }
 
   componentDidMount() {
-    axios.get("/hello")
-    .then(res => this.setState({hello: res.data}) )
+    axiosInstance.get("/posts")
+    .then(res => console.log(res.data) )
     .catch(err => console.log(err) )
   }
   render() {
